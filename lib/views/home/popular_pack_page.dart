@@ -52,14 +52,14 @@ class _PopularPackPageState extends State<PopularPackPage> {
             );
           } else {
             //trả về danh sách sản phẩm theo id lẻ
-            final evenItems = snapshot.data!
+            final oodItems = snapshot.data!
                 .asMap()
                 .entries
                 .where((entry) => entry.key % 2 != 0)
                 .map((entry) => entry.value)
                 .toList();
             return GridView.builder(
-              itemCount: snapshot.data!.length,
+              itemCount: oodItems.length,
               padding: const EdgeInsets.only(top: AppDefaults.padding),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -67,7 +67,7 @@ class _PopularPackPageState extends State<PopularPackPage> {
                 childAspectRatio: 0.65,
               ),
               itemBuilder: (context, index) {
-                final itemPro = evenItems[index];
+                final itemPro = oodItems[index];
                 return productItemSquare(itemPro, context);
               },
             );

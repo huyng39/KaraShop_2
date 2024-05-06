@@ -72,7 +72,7 @@ class _NewItemsPageState extends State<NewItemsPage> {
                 .map((entry) => entry.value)
                 .toList();
             return GridView.builder(
-              itemCount: snapshot.data!.length,
+              itemCount: evenItems.length,
               padding: const EdgeInsets.only(top: AppDefaults.padding),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
