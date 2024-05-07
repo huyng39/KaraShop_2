@@ -365,7 +365,9 @@ class _FilterHeader extends StatelessWidget {
             height: 40,
             width: 40,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.zero, backgroundColor: AppColors.scaffoldWithBoxBackground,
               ),

@@ -61,59 +61,6 @@ class _CartPageState extends State<CartPage> {
               setState(() {});
             },
           ),
-
-          //nút xóa tất cả sản phẩm trong giỏ hàng
-          // Consumer<ProductVM>(
-          //   builder: (context, value, child) => InkWell(
-          //     onTap: () {
-          //       //Hiển thị hộp thông báo xác nhận
-          //       AwesomeDialog(
-          //         context: context,
-          //         dialogType: DialogType.warning,
-          //         animType: AnimType.scale,
-          //         title: 'Xóa tất cả',
-          //         desc:
-          //             'Bạn có chắc chắn xóa hết tất cả sản phẩm trong giỏ hàng?',
-          //         btnOkOnPress: () {
-          //           value.deleteAll();
-          //           print('Bạn vừa nhấn nút xóa hết');
-          //         },
-          //         btnCancelText: "Quay lại",
-          //         btnOkText: "Xóa",
-          //         btnCancelColor: Colors.blue,
-          //         btnOkColor: Colors.red,
-          //         btnCancelOnPress: () {},
-          //         headerAnimationLoop: false,
-          //       ).show();
-
-          //       //Hiển thị thông báo nếu đã xóa thành công
-          //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //         behavior: SnackBarBehavior.floating,
-          //         backgroundColor: Colors.green,
-          //         content: Text(
-          //           'Đã xóa tất cả sản phẩm ra khỏi giỏ hàng!',
-          //           style: const TextStyle(
-          //               color: Colors.white, fontWeight: FontWeight.bold),
-          //           maxLines: 2,
-          //         ),
-          //         duration: Duration(seconds: 2),
-          //       ));
-          //     },
-          //     child: IconButton(
-          //       // ignore: deprecated_member_use
-          //       icon: SvgPicture.asset(
-          //         AppIcons.delete,
-          //         color: Colors.red,
-          //       ),
-          //       // Icon xóa tất cả sản phẩm
-          //       onPressed: () {
-          //         // Xử lý sự kiện khi người dùng nhấn vào nút làm mới
-          //         // Đặt logic làm mới danh sách đơn hàng ở đây
-          //         setState(() {});
-          //       },
-          //     ),
-          //   ),
-          // ),
         ],
       ),
       body: Column(

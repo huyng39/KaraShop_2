@@ -73,8 +73,8 @@ class RouteGenerator {
       case AppRoutes.search:
         return CupertinoPageRoute(builder: (_) => const SearchPage());
 
-      case AppRoutes.searchResult:
-        return CupertinoPageRoute(builder: (_) => const SearchResultPage());
+      // case AppRoutes.searchResult:
+      //   return CupertinoPageRoute(builder: (_) => const SearchResultPage());
 
       case AppRoutes.cartPage:
         return CupertinoPageRoute(builder: (_) => const CartPage());
