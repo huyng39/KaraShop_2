@@ -6,10 +6,15 @@ import '../../../core/constants/app_defaults.dart';
 import '../../../core/components/app_back_button.dart';
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class NewAddressPage extends StatelessWidget {
+class NewAddressPage extends StatefulWidget {
   // static const _position = LatLng(10.77615745855286, 106.66759669033004);
   const NewAddressPage({Key? key}) : super(key: key);
 
+  @override
+  State<NewAddressPage> createState() => _NewAddressPageState();
+}
+
+class _NewAddressPageState extends State<NewAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +22,7 @@ class NewAddressPage extends StatelessWidget {
       appBar: AppBar(
         leading: const AppBackButton(),
         title: const Text(
-          'Thêm địa chỉ',
+          'Thêm địa chỉ mới',
         ),
       ),
       body: SingleChildScrollView(
