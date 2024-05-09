@@ -5,6 +5,7 @@ import 'package:grocery/core/data/api.dart';
 import 'package:grocery/core/models/order/order.dart';
 import 'package:grocery/views/home/order_empty.dart';
 import 'package:grocery/views/profile/order/order_details_2.dart';
+import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../core/components/app_back_button.dart';
@@ -160,88 +161,19 @@ class _AllOrderPageState extends State<AllOrderPage> {
                       ],
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Nút xóa hóa đơn
-                          Container(
-                            width: 155,
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
-                              color: Colors.red, // Màu nền của nút
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  offset: Offset(0, 3), // Đổ bóng
-                                ),
-                              ],
-                            ),
-                            child: TextButton(
-                              onPressed: () async {
-                                // Xử lý logic khi nút được nhấn
-                                // Ví dụ: Xóa hóa đơn
-                                print('Bạn vừa chọn xóa hóa đơn');
-                                bool check =
-                                    await APIRepository().deleteBill(order.id);
-                                if (check) {
-                                  setState(() {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      behavior: SnackBarBehavior.floating,
-                                      backgroundColor: Colors.green,
-                                      content: Text(
-                                        'Hóa đơn "#${order.id.length > 5 ? order.id.substring(0, 5) + '...' : order.id}" đã xóa thành công!',
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                        maxLines: 2,
-                                      ),
-                                      duration: Duration(seconds: 2),
-                                    ));
-                                  });
-                                } else {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                    behavior: SnackBarBehavior.floating,
-                                    backgroundColor: Colors.red,
-                                    content: Text(
-                                      'Đã có lỗi xảy ra! Vui lòng rhử lại',
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                      maxLines: 2,
-                                    ),
-                                    duration: Duration(seconds: 2),
-                                  ));
-                                }
-                              },
-                              child: const Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.delete,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      'Xóa hóa đơn',
-                                      style: TextStyle(
-                                          color: Colors.white, // Màu chữ
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    Row(
+                      children: [
+                        const Text('Giá:'),
+                        const SizedBox(width: 5),
+                        //hiển thị mã đơn hàng
+                        Text(
+                          NumberFormat('###,###.### ₫').format(order.total),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(color: Colors.black,fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                   ],
                 ),

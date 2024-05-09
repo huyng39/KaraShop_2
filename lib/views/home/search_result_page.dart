@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grocery/core/data/api.dart';
 import 'package:grocery/core/models/product/product.dart';
-import 'package:grocery/core/models/search_viewmodel.dart';
+import 'package:grocery/core/models/tools_viewmodel.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -72,7 +72,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(AppDefaults.padding),
-              child: Consumer<SearchVM>(
+              child: Consumer<ToolsVM>(
                 builder: (context, value, child) {
                   return TextFormField(
                     controller: _searchController,

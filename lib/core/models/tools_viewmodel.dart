@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:grocery/core/models/product/product.dart';
 
-class SearchVM with ChangeNotifier {
+class ToolsVM with ChangeNotifier {
   List<String> lst = [];
+  String shippingAddress = '';
 
   // Hàm thêm từ khóa tìm kiếm vào danh sách
   void addSearchResult(String name) {
@@ -13,6 +14,20 @@ class SearchVM with ChangeNotifier {
     // Nếu chưa tồn tại, thêm vào
     if (!isExisting) {
       lst.add(name);
+      // notifyListeners();
+    } else {
+    }
+    notifyListeners();
+  }
+
+  // Hàm thêm địa chỉ giao hàng
+  void addShipAddress(String address) {
+    // Kiểm tra địa chỉ đã tồn tại chưa?
+    bool isExisting = shippingAddress.contains(address);
+
+    // Nếu chưa tồn tại, thêm vào
+    if (!isExisting) {
+      shippingAddress = address;
       // notifyListeners();
     } else {
     }

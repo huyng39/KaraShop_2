@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:grocery/core/data/api.dart';
 import 'package:grocery/core/models/order/order.dart';
 import 'package:grocery/core/models/order/orderDetaile.dart';
 import 'package:grocery/core/models/product/product.dart';
+import 'package:grocery/core/models/user/user.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/components/app_back_button.dart';
 import '../../../core/constants/app_colors.dart';
@@ -22,6 +26,17 @@ class OrderDetails extends StatefulWidget {
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
+  String strUser = '';
+  // khi dùng tham số truyền vào phải khai báo biến trùng tên require
+  User user = User.userEmpty();
+  getDataUser() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    strUser = pref.getString('user')!;
+    await Future.delayed(const Duration(seconds: 2));
+    user = User.fromJson(jsonDecode(strUser));
+    setState(() {});
+  }
+
   bool isOrderPlaced = false; // Trạng thái đơn hàng đã được đặt lại hay chưa
   OrderDetaileModel orderDetailModel = new OrderDetaileModel(
       productId: 1,
@@ -96,6 +111,7 @@ class _OrderDetailsState extends State<OrderDetails> {
     // lstOrder.add(orderDetaileModel);
     // TODO: implement initState
     super.initState();
+    getDataUser();
   }
 
   @override
@@ -150,6 +166,69 @@ class _OrderDetailsState extends State<OrderDetails> {
                       fontWeight: FontWeight.bold, color: Colors.black54),
                 ),
               ),
+              const SizedBox(height: AppDefaults.padding),
+              const Divider(),
+              strUser.isEmpty
+                  ? Center(
+                      child: LoadingAnimationWidget.threeArchedCircle(
+                          color: Colors.green, size: 50),
+                    )
+                  : Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Thông tin đơn hàng",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                user.fullName!,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                user.phoneNumber!,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "828 Sư Vạn Hạnh,P.13,Q.10,TP.HCM",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
               const SizedBox(height: AppDefaults.padding),
               const Divider(),
               _buildOrderList(context),

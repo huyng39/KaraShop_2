@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grocery/core/models/product/product.dart';
-import 'package:grocery/core/models/search_viewmodel.dart';
+import 'package:grocery/core/models/tools_viewmodel.dart';
 import 'package:grocery/views/home/search_result_page.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
@@ -82,7 +82,7 @@ class _RecentSearchListState extends State<_RecentSearchList> {
                       child: SizedBox(
                         width: 500,
                         height: 250,
-                        child: Consumer<SearchVM>(
+                        child: Consumer<ToolsVM>(
                           builder: (context, value, child) {
                             // Sort the list by the most recent items
                             return Scaffold(
@@ -175,7 +175,7 @@ class _SearchPageHeaderState extends State<_SearchPageHeader> {
             child: Stack(
               children: [
                 /// Search Box
-                Consumer<SearchVM>(
+                Consumer<ToolsVM>(
                   builder: (context, value, child) {
                     return Form(
                       child: TextFormField(

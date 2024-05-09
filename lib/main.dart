@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/core/models/product/product_viewmodel.dart';
-import 'package:grocery/core/models/search_viewmodel.dart';
+import 'package:grocery/core/models/tools_viewmodel.dart';
 import 'package:grocery/views/auth/splash.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ProductVM(),
         ),
         ChangeNotifierProvider(
-          create: (context) => SearchVM(),
+          create: (context) => ToolsVM(),
         ),
       ],
       child: MaterialApp(
