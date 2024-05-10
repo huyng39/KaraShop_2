@@ -58,21 +58,33 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 child: SafeArea(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: value.lst.map((item) => singleCartItemCheckout(item, context)).toList(),
+                    children: value.lst
+                        .map((item) => singleCartItemCheckout(item, context))
+                        .toList(),
                   ),
                 ),
               ),
               // const CouponCodeField(),
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 5,
-                  vertical: 5,
-                ),
-                child: ItemTotalsAndPriceCheckOut(),
-              ),
-              SizedBox(height: 10),
+              // const Padding(
+              //   padding: EdgeInsets.symmetric(
+              //     horizontal: 5,
+              //     vertical: 5,
+              //   ),
+              //   child: ItemTotalsAndPriceCheckOut(),
+              // ),
+              // SizedBox(height: 10),
+              // PayNowButton(),
+              // SizedBox(height: 16),
+            ],
+          ),
+        ),
+        bottomNavigationBar: const SizedBox(
+          width: 150,
+          height: 200,
+          child: Column(
+            children: [
+              ItemTotalsAndPriceCheckOut(),
               PayNowButton(),
-              SizedBox(height: 16),
             ],
           ),
         ),
