@@ -63,7 +63,7 @@ class DrawerPage extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, AppRoutes.contactUs),
             ),
             AppSettingsListTile(
-              label: 'Hướng dẫn sử dụng',
+              label: 'Video demo app',
               trailing: SvgPicture.asset(AppIcons.right),
               onTap: () => Navigator.pushNamed(context, AppRoutes.instruction),
             ),

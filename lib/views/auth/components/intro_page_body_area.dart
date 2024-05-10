@@ -4,11 +4,16 @@ import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_defaults.dart';
 import '../../../core/routes/app_routes.dart';
 
-class IntroPageBodyArea extends StatelessWidget {
+class IntroPageBodyArea extends StatefulWidget {
   const IntroPageBodyArea({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<IntroPageBodyArea> createState() => _IntroPageBodyAreaState();
+}
+
+class _IntroPageBodyAreaState extends State<IntroPageBodyArea> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,8 +49,9 @@ class IntroPageBodyArea extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, AppRoutes.login),
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoutes.login);
+                    },
                     child: const Text('Đăng nhập bằng tài khoản của bạn'),
                   ),
                 ),
@@ -56,7 +62,8 @@ class IntroPageBodyArea extends StatelessWidget {
                     onPressed: () =>
                         Navigator.pushNamed(context, AppRoutes.signup),
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.black, backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.white,
                     ),
                     child: const Text('Tạo tài khoản mới'),
                   ),

@@ -3,11 +3,16 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/constants/constants.dart';
 
-class SocialLogins extends StatelessWidget {
+class SocialLogins extends StatefulWidget {
   const SocialLogins({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<SocialLogins> createState() => _SocialLoginsState();
+}
+
+class _SocialLoginsState extends State<SocialLogins> {
   @override
   Widget build(BuildContext context) {
     return Padding(

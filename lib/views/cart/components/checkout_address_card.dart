@@ -51,7 +51,8 @@ class _AddressCardState extends State<AddressCard> {
             ? AppColors.coloredBackground
             : AppColors.textInputBackground,
         borderRadius: AppDefaults.borderRadius,
-        child: InkWell(
+        child: 
+        InkWell(
           borderRadius: AppDefaults.borderRadius,
           onTap: widget.onTap,
           child: Container(

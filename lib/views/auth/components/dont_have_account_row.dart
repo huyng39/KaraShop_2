@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../../core/routes/app_routes.dart';
 
-class DontHaveAccountRow extends StatelessWidget {
+class DontHaveAccountRow extends StatefulWidget {
   const DontHaveAccountRow({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<DontHaveAccountRow> createState() => _DontHaveAccountRowState();
+}
+
+class _DontHaveAccountRowState extends State<DontHaveAccountRow> {
   @override
   Widget build(BuildContext context) {
     return Row(

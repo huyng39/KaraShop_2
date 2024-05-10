@@ -35,72 +35,76 @@ class _AllOrderPageState extends State<AllOrderPage> {
   }
 
   Future<List<OrderModel>> _getBills() async {
-    // Lấy thông tin product từ API
-    return await APIRepository().getBill();
+    // Lấy thông tin hóa đơn từ API
+    List<OrderModel> bills = await APIRepository().getBill();
+
+    //Sắp xếp hóa đơn theo ngày tạo hóa đơn
+    bills.sort((a, b) => b.dateCreated.compareTo(a.dateCreated));
+    return bills;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: const AppBackButton(),
-          title: const Text('Đơn hàng của tôi'),
-          //nút refresh lại trang
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.refresh,
-                color: Colors.black,
-              ), // Icon làm mới
-              onPressed: () {
-                // Xử lý sự kiện khi người dùng nhấn vào nút làm mới
-                // Đặt logic làm mới danh sách đơn hàng ở đây
-                setState(() {});
-              },
-            ),
-          ],
-        ),
-        body: FutureBuilder<List<OrderModel>>(
-          future: _getBills(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: LoadingAnimationWidget.threeArchedCircle(
-                    color: Colors.green, size: 50),
-              );
-            } else {
-              //báo lỗi nếu hệ thống trả về lỗi
-              if (snapshot.hasError) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  backgroundColor: Colors.red,
-                  content: Text(
-                    'Đã có lỗi xảy ra! Vui lòng thử lại',
-                    style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                    maxLines: 2,
-                  ),
-                  duration: Duration(seconds: 2),
-                ));
-              }
-              //nếu danh sách rỗng trả về trang thông báo rỗng
-              else if(snapshot.data!.isEmpty){
-                return OrderEmpty();
-              }
-              return Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.only(top: 8),
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    final order = snapshot.data![index];
-                    return orderItemTile(order, context);
-                  },
+      appBar: AppBar(
+        leading: const AppBackButton(),
+        title: const Text('Đơn hàng của tôi'),
+        //nút refresh lại trang
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.refresh,
+              color: Colors.black,
+            ), // Icon làm mới
+            onPressed: () {
+              // Xử lý sự kiện khi người dùng nhấn vào nút làm mới
+              // Đặt logic làm mới danh sách đơn hàng ở đây
+              setState(() {});
+            },
+          ),
+        ],
+      ),
+      body: FutureBuilder<List<OrderModel>>(
+        future: _getBills(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: LoadingAnimationWidget.threeArchedCircle(
+                  color: Colors.green, size: 50),
+            );
+          } else {
+            //báo lỗi nếu hệ thống trả về lỗi
+            if (snapshot.hasError) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                behavior: SnackBarBehavior.floating,
+                backgroundColor: Colors.red,
+                content: Text(
+                  'Đã có lỗi xảy ra! Vui lòng thử lại',
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                  maxLines: 2,
                 ),
-              );
+                duration: Duration(seconds: 2),
+              ));
             }
-          },
-        ),
-      );
+            //nếu danh sách rỗng trả về trang thông báo rỗng
+            else if (snapshot.data!.isEmpty) {
+              return OrderEmpty();
+            }
+            return Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.only(top: 8),
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  final order = snapshot.data![index];
+                  return orderItemTile(order, context);
+                },
+              ),
+            );
+          }
+        },
+      ),
+    );
   }
 
   Widget orderItemTile(OrderModel order, BuildContext context) {
@@ -171,7 +175,9 @@ class _AllOrderPageState extends State<AllOrderPage> {
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge
-                              ?.copyWith(color: Colors.black,fontWeight: FontWeight.bold),
+                              ?.copyWith(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),

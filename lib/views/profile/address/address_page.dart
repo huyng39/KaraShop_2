@@ -20,16 +20,16 @@ class AddressPage extends StatelessWidget {
           style: TextStyle(fontSize: 15),
         ),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(AppDefaults.margin),
-        padding: const EdgeInsets.all(AppDefaults.padding),
-        decoration: BoxDecoration(
-          color: AppColors.scaffoldBackground,
-          borderRadius: AppDefaults.borderRadius,
-        ),
-        child: Stack(
-          children: [
-            ListView.separated(
+      body: Stack(
+        children: [
+          Container(
+            margin: const EdgeInsets.all(AppDefaults.margin),
+            padding: const EdgeInsets.all(AppDefaults.padding),
+            decoration: BoxDecoration(
+              color: AppColors.scaffoldBackground,
+              borderRadius: AppDefaults.borderRadius,
+            ),
+            child: ListView.separated(
               itemBuilder: (context, index) {
                 return AddressTile(
                   label: 'Nhà riêng',
@@ -42,20 +42,20 @@ class AddressPage extends StatelessWidget {
               separatorBuilder: (context, index) =>
                   const Divider(thickness: 0.2),
             ),
-            Positioned(
-              bottom: 16,
-              right: 16,
-              child: FloatingActionButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.newAddress);
-                },
-                backgroundColor: AppColors.primary,
-                splashColor: AppColors.primary,
-                child: const Icon(Icons.add),
-              ),
+          ),
+          Positioned(
+            bottom: 16,
+            right: 16,
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.newAddress);
+              },
+              backgroundColor: AppColors.primary,
+              splashColor: AppColors.primary,
+              child: const Icon(Icons.add,color: Colors.white,),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -109,8 +109,8 @@ class AddressTile extends StatelessWidget {
               Text(
                 address,
                 style: const TextStyle(
-                  // fontSize: 10,
-                ),
+                    // fontSize: 10,
+                    ),
                 maxLines: 2,
                 softWrap: true,
               ),

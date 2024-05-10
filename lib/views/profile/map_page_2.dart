@@ -119,7 +119,7 @@ class _MapPage2State extends State<MapPage2> {
                     Row(
                       children: [
                         Container(
-                          width: 330,
+                          width: 315,
                           child: TextFormField(
                             controller: _addressController,
                             keyboardType: TextInputType.text,
@@ -158,7 +158,7 @@ class _MapPage2State extends State<MapPage2> {
                           width: 5,
                         ),
                         SizedBox(
-                          width: 56,
+                          width: 55,
                           height: 65,
                           child: ElevatedButton(
                             onPressed: () async {
@@ -218,11 +218,23 @@ class _MapPage2State extends State<MapPage2> {
                     Marker(
                       markerId: MarkerId('Googleplex'),
                       position: initialLocation,
-                      infoWindow: InfoWindow(
+                      infoWindow: const InfoWindow(
                         title: 'Googleplex',
                       ),
                     ),
                   },
+                  circles: Set<Circle>.of(
+                    <Circle>[
+                      Circle(
+                        circleId: CircleId('location_circle'),
+                        center: initialLocation,
+                        radius: 100, // Replace with location accuracy
+                        fillColor: Colors.blue.withOpacity(0.3),
+                        strokeColor: Colors.blue,
+                        strokeWidth: 1,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

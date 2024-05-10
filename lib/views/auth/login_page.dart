@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery/views/auth/components/demo_video.dart';
 
 import '../../core/constants/constants.dart';
 import 'components/dont_have_account_row.dart';
@@ -6,9 +7,14 @@ import 'components/login_header.dart';
 import 'components/login_page_form.dart';
 import 'components/social_logins.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -24,6 +30,7 @@ class LoginPage extends StatelessWidget {
                 Text("Hoặc đăng nhập bằng"),
                 SocialLogins(),
                 DontHaveAccountRow(),
+                // VideoDemo(),
               ],
             ),
           ),

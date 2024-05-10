@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
-
-import '../../../core/components/network_image.dart';
-import '../../../core/constants/constants.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class LoginPageHeader extends StatefulWidget {
-  const LoginPageHeader({
-    Key? key,
-  }) : super(key: key);
+class VideoDemo extends StatefulWidget {
+  const VideoDemo({super.key});
 
   @override
-  State<LoginPageHeader> createState() => _LoginPageHeaderState();
+  State<VideoDemo> createState() => _VideoDemoState();
 }
 
-class _LoginPageHeaderState extends State<LoginPageHeader> {
+class _VideoDemoState extends State<VideoDemo> {
   String API_KEY = 'AIzaSyDwWkOGBwHy9kCnixkjiwjLtVVOgvmdDsM';
   late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showDialog();
-    });
     _controller = YoutubePlayerController(
       initialVideoId: 'gsPb3nDy41w',
       flags: YoutubePlayerFlags(
@@ -33,7 +25,7 @@ class _LoginPageHeaderState extends State<LoginPageHeader> {
     );
   }
 
-  //hiển thị video demo trên youtube
+//hiển thị video demo trên youtube
   void _showDialog() {
     showDialog(
       context: context,
@@ -69,29 +61,13 @@ class _LoginPageHeaderState extends State<LoginPageHeader> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.25,
-          child: AspectRatio(
-            aspectRatio: 1 / 1,
-            child: Image.asset(AppImages.roundedLogo),
-          ),
+        TextButton(
+          onPressed:() => _showDialog(),
+          child: const Text('Video Demo'),
         ),
-        Text(
-          'Chào mừng bạn đến với',
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Kara Shop',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
-        )
       ],
     );
   }
