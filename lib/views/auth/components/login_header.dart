@@ -49,7 +49,7 @@ class _LoginPageHeaderState extends State<LoginPageHeader> {
                         EdgeInsets.all(0), // You can adjust this padding
                     content: YoutubePlayer(
                       controller: _controller,
-                      aspectRatio: constraints.maxWidth/650,
+                      aspectRatio: constraints.maxWidth/710,
                     ),
                   ),
                   TextButton(

@@ -42,9 +42,11 @@ class ProductVM with ChangeNotifier {
       // If product already exists, update its quantity
       lst[existingProductIndex].quantity =
           lst[existingProductIndex].quantity! + 1;
+          notifyListeners();
     } else {
       // If product doesn't exist, add it to the cart
       lst.add(pro);
+      notifyListeners();
       return true;
     }
     notifyListeners();

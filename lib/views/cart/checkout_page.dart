@@ -80,7 +80,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         ),
         bottomNavigationBar: const SizedBox(
           width: 150,
-          height: 200,
+          height: 210,
           child: Column(
             children: [
               ItemTotalsAndPriceCheckOut(),
